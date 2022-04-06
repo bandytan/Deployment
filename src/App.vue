@@ -1,26 +1,44 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <h1>{{ msg }}</h1>
+  <button @click="genRanNum()">Generate random Number</button>
+  <h2>{{ random_number }}</h2>
 </template>
-
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "RandomNumber",
+  data() {
+    return {
+      random_number: 0,
+    };
+  },
+  props: {
+    msg: String,
+    min: { type: Number, default: 1 },
+    max: { type: Number, default: 10 },
+  },
+  methods: {
+    genRanNum() {
+      this.random_number = Math.floor(
+        Math.random() * (this.max - this.min + 1) + this.min
+      ); // generate random number from 1 to 100
+    },
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+h3 {
+  margin: 40px 0 0;
+}
+ul {
+  list-style-type: none;
+  padding: 0;
+}
+li {
+  display: inline-block;
+  margin: 0 10px;
+}
+a {
+  color: #42b983;
 }
 </style>
